@@ -1,7 +1,6 @@
 <?php
 session_start(); 
 include 'db.php';
-include 'layout.php';
 
 $error = "";
 
@@ -29,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "User not found!";
     }
 }
+
+include 'layout.php';
 ?>
 
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
@@ -36,6 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card p-4 shadow-lg" style="background: rgba(0, 0, 0, 0.6); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
             
             <h2 class="text-center text-white fw-bold mb-4">Login</h2>
+
+            <?php if($error): ?>
+                <div class="alert alert-danger py-2 small"><?php echo $error; ?></div>
+            <?php endif; ?>
 
             <form action="login.php" method="POST">
                 <div class="mb-3">
@@ -58,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </p>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
